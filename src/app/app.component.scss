@@ -1,4 +1,5 @@
 
+
 .menu-header-bg{
     height: 180px;
     width: 350px;
@@ -43,6 +44,7 @@
 
 .menu-items {
     margin: 0px;
+    background-color: white;
 
     icon-icon{
         margin-right: 20px;
@@ -52,6 +54,8 @@
     ion-item{
         padding-left: 20px;
         margin-bottom: 10px;
+        --background-color: white;
+        
 
     }
 
@@ -66,4 +70,17 @@
     }
 
 
+}
+
+.item-bg{
+    background-color: white;
+    color: black;
+}
+
+ion-icon{
+    color: black;
+}
+
+.lining{
+    border-bottom:#86979f solid 1px;
 }
