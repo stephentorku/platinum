@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button>
+				<ion-menu-button menu="main-menu" color="custom"></ion-menu-button>
+			</ion-button>
+</ion-buttons>
+
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+<div class="items">
+<h3>Search by:</h3>
+
+<ion-segment color="light" [(ngModel)]="selectTabs" (ionChange)="segmentChanged($event)" value="capacity">
+  <ion-segment-button value="capacity">
+    <ion-label>Room Capacity</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="roommate">
+    <ion-label>Roommate Name</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<form>
+<div *ngIf="selectTabs == 'capacity'">
+    <h3>Capacity</h3>
+    <app-input placeholder="Room Capacity"></app-input>
+    <ion-button color="light" type="submit" shape="round" block>SEARCH</ion-button>
+  </div>
+
+  <div *ngIf="selectTabs == 'roommate'">
+    <h3>Roommate</h3>
+    <app-input placeholder="Roommate Name"></app-input>
+    <ion-button color="light" type="submit" shape="round" block>SEARCH</ion-button>
+
+  </div>
+</form>
+
+</div>
+</ion-content>

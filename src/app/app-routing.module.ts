@@ -31,6 +31,14 @@ const routes: Routes = [
     path: 'announcements',
     loadChildren: () => import('./announcements/announcements.module').then( m => m.AnnouncementsPageModule)
   },
+  {
+    path: 'choose-room',
+    loadChildren: () => import('./choose-room/choose-room.module').then( m => m.ChooseRoomPageModule)
+  },
+  {
+    path: 'make-payment',
+    loadChildren: () => import('./make-payment/make-payment.module').then( m => m.MakePaymentPageModule)
+  },
 ];
 
 @NgModule({
