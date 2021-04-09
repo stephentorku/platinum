@@ -20,9 +20,9 @@
     <app-input name="password" [(ngModel)]="user.pass" type="password" placeholder="Password" ngDefaultControl></app-input>
     
     <ion-item>
-    <ion-select placeholder="Select Gender">
-      <ion-select-option [(ngModel)]="user.gen" value="female" ngDefaultControl>Female</ion-select-option>
-      <ion-select-option [(ngModel)]="user.gen" value="Male" ngDefaultControl>Male</ion-select-option>
+    <ion-select [(ngModel)]="user.gen" placeholder="Select Gender">
+      <ion-select-option  value="female" ngDefaultControl>Female</ion-select-option>
+      <ion-select-option  value="Male" ngDefaultControl>Male</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-button (click)="submit()"expand="block" shape="round">Sign Up</ion-button>

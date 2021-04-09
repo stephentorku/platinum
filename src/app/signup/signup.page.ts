@@ -27,6 +27,7 @@ export class SignupPage implements OnInit {
       pass:this.user.pass
 
     },{});
+    console.log(this.user);
     this.navCtrl.pop().then(()=>{
       this.toast.show('New Member added','3000','bottom').subscribe(
         toast =>{
