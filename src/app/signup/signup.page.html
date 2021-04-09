@@ -13,22 +13,20 @@
 
 <ion-content>
   <h1>Create your<br />Account</h1>
-
-  <form id="form">
-    <app-input placeholder="First Name"></app-input>
-    <app-input placeholder="Last Name"></app-input>
-    <app-input placeholder="Gender"></app-input>
-    <app-input placeholder="Email"></app-input>
-    <app-input type="password" placeholder="Password"></app-input>
+    <app-input name="firstname" type="text" [(ngModel)]="user.fname" placeholder="First Name" ngDefaultControl></app-input>
+    <app-input name="lastname" [(ngModel)]="user.lname" placeholder="Last Name" ngDefaultControl></app-input>
+    <app-input  [(ngModel)]="user.number" placeholder="Phone Number" ngDefaultControl></app-input>
+    <app-input name="Email" [(ngModel)]="user.email" placeholder="Email" ngDefaultControl></app-input>
+    <app-input name="password" [(ngModel)]="user.pass" type="password" placeholder="Password" ngDefaultControl></app-input>
     
     <ion-item>
     <ion-select placeholder="Select Gender">
-      <ion-select-option value="f">Female</ion-select-option>
-      <ion-select-option value="m">Male</ion-select-option>
+      <ion-select-option [(ngModel)]="user.gen" value="female" ngDefaultControl>Female</ion-select-option>
+      <ion-select-option [(ngModel)]="user.gen" value="Male" ngDefaultControl>Male</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button expand="block" shape="round">Sign Up</ion-button>
-  </form>
+  <ion-button (click)="submit()"expand="block" shape="round">Sign Up</ion-button>
+  
 
-  <p>By pressing 'Join Us' you agree to <br />our terms & conditions.</p>
+  <p>By clicking 'Join Us' you agree to <br />our terms & conditions.</p>
 </ion-content>
