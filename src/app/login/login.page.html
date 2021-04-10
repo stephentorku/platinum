@@ -21,6 +21,6 @@
   <form id="form">
     <app-input name="Email" [(ngModel)]="user.email" placeholder="Email" ngDefaultControl>></app-input>
     <app-input name="password" [(ngModel)]="user.pass" type="password" placeholder="Password" ngDefaultControl></app-input>
-    <ion-button (click)="login" expand="block" shape="round">Login</ion-button>
+    <ion-button (click)="login()" expand="block" shape="round">Login</ion-button>
   </form>
 </ion-content>
