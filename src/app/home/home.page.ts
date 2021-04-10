@@ -19,8 +19,8 @@ export class HomePage {
 
     this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
       id:this.userPostData.user_id,
-    },{}).then(data=>{
-      this.person =data;
+    },{}).then(reply=>{
+      this.person =reply;
     });
     
   }
