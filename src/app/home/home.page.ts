@@ -7,7 +7,7 @@ import{HTTP } from '@ionic-native/http/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
- userPostData={"user_id":""}
+ userPostData={"id":""}
  userdets:any;
  person:any=[]
   constructor(private http:HTTP) { }
@@ -15,10 +15,10 @@ export class HomePage {
   ngOnInit() {
     const data = localStorage.getItem('UserData');
     this.userdets =data;
-    this.userPostData.user_id = this.userdets;
+    this.userPostData.id = this.userdets;
 
     this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
-      id:this.userPostData.user_id,
+      id:this.userPostData.id,
     },{}).then(reply=>{
       this.person =reply;
     });
