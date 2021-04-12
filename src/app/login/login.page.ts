@@ -23,8 +23,8 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    this.http.post('https://platinumhostel.000webhostapp.com/logintenant.php',{
+  async login(){
+    await this.http.post('https://platinumhostel.000webhostapp.com/logintenant.php',{
       email:this.user.email,
       pass:this.user.pass
      },{}).then(data=>{
