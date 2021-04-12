@@ -18,9 +18,9 @@
     <img src="assets/logo.png" />
   </div>
 
-  <form id="form">
-    <app-input name="Email" [(ngModel)]="user.email" placeholder="Email" ngDefaultControl>></app-input>
-    <app-input name="password" [(ngModel)]="user.pass" type="password" placeholder="Password" ngDefaultControl></app-input>
+  <form>
+    <app-input name="Email" [(ngModel)]="user.email" placeholder="Email" ngDefaultControl required ngModel>></app-input>
+    <app-input name="password" [(ngModel)]="user.pass" type="password" placeholder="Password" ngDefaultControl required ngModel></app-input>
     <ion-button (click)="login()" expand="block" shape="round">Login</ion-button>
   </form>
 </ion-content>

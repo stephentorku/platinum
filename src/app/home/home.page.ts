@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import{HTTP } from '@ionic-native/http/ngx';
+import { TenantService } from '../tenant.service';
 
 @Component({
   selector: 'app-home',
@@ -7,24 +8,25 @@ import{HTTP } from '@ionic-native/http/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
- userPostData={"id":""}
- userdets:any;
- person:any=[]
-  constructor(private http:HTTP) { }
+ id:any;
+ person:any=[];
+
+  constructor(private http:HTTP, private tenant:TenantService ) { }
 
   ngOnInit() {
-    const data = localStorage.getItem('UserData');
-    this.userdets =data;
-    this.userPostData.id = this.userdets;
-
-    this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
-      id:this.userPostData.id,
-    },{}).then(reply=>{
-      this.person =reply;
-    });
     
+    this.id = this.tenant.getid();
+    this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
+      id: this.id
+    },{}).then(data=>{
+      this.person=JSON.parse(data.data);
+      // console.log(data.data);
+    });
+    // console.log(this.person);  
+    console.log(this.person)
   }
 
+  
   slidesOptions = {
     slidesPerView: 1.5
   }
