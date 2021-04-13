@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
+import {AlertController, NavController} from '@ionic/angular';
+import{Router,NavigationExtras} from '@angular/router';
 
 
 @Component({
@@ -13,28 +15,56 @@ export class MakePaymentPage implements OnInit {
   cost=4000;
   url;
   orderid;
-  responseData: any={};
-  //https://www.paybox.com.co/pay?amount=20.99&currency=GHS&mode=Cash&mobile_network=AirtelTigo&mobile_number=+233XXXXX&payload=%7b%7d&order_id=PB_12345
+  responseD:any={};
 
-  constructor(private http:HTTP) { 
 
-    
+  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router) {
+
   }
 
   ngOnInit() {
     
   }
 
-  makepayment(){
-    this.url='https://www.paybox.com.co/pay?amount='+this.cost+'&currency=GHS&mode=Cash&mobile_network=AirtelTigo&mobile_number='+ this.details.number +'&order_id='+this.details.email;
-
-    this.http.post(this.url,{},{Authorization:'Bearer ba2de846-c56c-4fbd-a0d9-0195331ed287'}).then(data => {
+ async makepayment(){
+     this.url='https://www.paybox.com.co/pay?amount='+this.cost+'&currency=GHS&mode=Cash&mobile_network=AirtelTigo&mobile_number='+ this.details.number +'&order_id='+this.details.email;
+     await this.http.post(this.url,{},{Authorization:'Bearer ba2de846-c56c-4fbd-a0d9-0195331ed287'}).then(data =>{
+      this.responseD=JSON.parse(data.data);
       console.log(data.data);
-      this.responseData=data.data;
-      
     });
-  }
+    this.orderid=this.responseD.order_id;
+    console.log(this.orderid);
 
-  //if orderid != null, then book
+    if(this.orderid==null){
+     await this.alertctrl.create({
+        header:'Failed',
+        subHeader:'Transaction failed. Please try again later',
+        buttons:[{
+          text:"Okay",
+          handler:()=>{
+            this.router.navigate(['/home']);
+          }
+        }]
+      }).then((confirmElement)=>{
+        confirmElement.present()
+      })
+    }
+    else{
+    await this.alertctrl.create({
+        header:'Success',
+        subHeader:'Transaction was successful',
+        buttons:[{
+          text:"Okay",
+          handler:()=>{
+            this.router.navigate(['/home']);
+          }
+        }]
+      }).then((confirmElement)=>{
+        confirmElement.present()
+      })
+    }
+  }
+  
+
 
 }
