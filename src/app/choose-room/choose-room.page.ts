@@ -42,7 +42,7 @@ export class ChooseRoomPage implements OnInit {
     await this.http.post('https://platinumhostel.000webhostapp.com/searchbycapacity.php',
     {capacity:this.need.capacity},{}).then(data=>{
       console.log(data.data);
-      this.responseObject = data.data;
+      this.responseObject = JSON.parse(data.data);
     });
 
     this.roomservice.setObject(this.responseData);
