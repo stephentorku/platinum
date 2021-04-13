@@ -1,0 +1,31 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button>
+				<ion-menu-button menu="main-menu" color="custom"></ion-menu-button>
+			</ion-button>
+</ion-buttons>
+
+
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+<h3>Room Details</h3>
+<ion-card>
+  <ion-card-header>
+    <div class="main">
+      <img src="/assets/fast-food.png">
+    </div>
+    
+  </ion-card-header>
+  <ion-card-content class="ion-text-left">
+    <ion-card-title class="ion-margin-bottom h3-color">Room Number: {{roomnumber}}  </ion-card-title>
+    <ion-card-subtitle class="ion-text-left">Room capacity: {{capacity}} </ion-card-subtitle>
+    <ion-card-subtitle class="ion-text-left">Spaces Left: {{space_left}} </ion-card-subtitle>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>

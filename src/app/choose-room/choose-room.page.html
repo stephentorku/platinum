@@ -33,8 +33,9 @@
 
   <div *ngIf="selectTabs == 'roommate'">
     <h3>Roommate</h3>
-    <app-input placeholder="Roommate Name"></app-input>
-    <ion-button color="light" type="submit" shape="round" block>SEARCH</ion-button>
+    <app-input placeholder="First Name" [(ngModel)]="details.fname"></app-input>
+    <app-input placeholder="Last Name" [(ngModel)]="details.lname"></app-input>
+    <ion-button (click)="getRoomByName()" color="light" type="submit" shape="round" block>SEARCH</ion-button>
 
   </div>
 </form>
