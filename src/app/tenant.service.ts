@@ -6,6 +6,7 @@ import{HTTP } from '@ionic-native/http/ngx';
 export class TenantService {
 
   id:any;
+  name:any
   constructor(private http: HTTP){ }
 
   getuserid(createbody,create){
@@ -28,5 +29,14 @@ export class TenantService {
   }
   getid(){
     return this.id;
+  }
+
+  setname(yakubu){
+    this.name=yakubu
+    return true;
+  }
+
+  getuser(){
+    return this.name;
   }
 }

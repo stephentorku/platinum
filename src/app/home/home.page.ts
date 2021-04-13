@@ -10,11 +10,12 @@ import { TenantService } from '../tenant.service';
 export class HomePage {
  id:any;
  person:any=[];
+ p:any=[];
 
   constructor(private http:HTTP, private tenant:TenantService ) { }
 
   ngOnInit() {
-    
+    this.p=this.tenant.getuser();
     this.id = this.tenant.getid();
     this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
       id: this.id
@@ -24,6 +25,7 @@ export class HomePage {
     });
     // console.log(this.person);  
     console.log(this.person)
+    
   }
 
   
