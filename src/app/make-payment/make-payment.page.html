@@ -14,13 +14,10 @@
 <div class="items">
 <h3>Make Payment</h3>
 <form>
-	{% comment %} order id {% endcomment %}
+	
     <app-input placeholder="Enter Email" name="email" [(ngModel)]="details.email" ngDefaultControl required ngModel></app-input>
-	{% comment %} amount {% endcomment %}
-	You are paying GHS4000 to Platinum Hostel
-	{% comment %} phone number {% endcomment %}
 	<app-input placeholder="Enter Phone number (+233..)" name="phonenumber" [(ngModel)]="details.number" ngDefaultControl required ngModel></app-input>
-    <ion-button color="light" type="submit" shape="round" block>Make Payment</ion-button>
+    <ion-button color="light" type="submit" shape="round" block (click)="makepayment()">Make Payment</ion-button>
 
 
 </form>
