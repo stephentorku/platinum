@@ -26,6 +26,7 @@ export class HomePage {
     // console.log(this.person);  
     console.log(this.person)
     
+    console.log(this.person.paymentstatus);
   }
 
   

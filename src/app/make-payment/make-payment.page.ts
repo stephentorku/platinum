@@ -35,7 +35,7 @@ export class MakePaymentPage implements OnInit {
     this.orderid=this.responseD.order_id;
     console.log(this.orderid);
 
-    if(this.orderid==null){
+    if(this.orderid=="undefined"){
      await this.alertctrl.create({
         header:'Failed',
         subHeader:'Transaction failed. Please try again later',
