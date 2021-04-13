@@ -27,14 +27,14 @@
 <form>
 <div *ngIf="selectTabs == 'capacity'">
     <h3>Capacity</h3>
-    <app-input placeholder="Room Capacity"></app-input>
-    <ion-button color="light" type="submit" shape="round" block>SEARCH</ion-button>
+    <app-input name="Capacity" [(ngModel)]="need.capacity"   placeholder="Room Capacity" ngDefaultControl required ngModel></app-input>
+    <ion-button (click)="getbycapacity()" color="light" type="submit" shape="round" block>SEARCH</ion-button>
   </div>
 
   <div *ngIf="selectTabs == 'roommate'">
     <h3>Roommate</h3>
-    <app-input placeholder="First Name" [(ngModel)]="details.fname"></app-input>
-    <app-input placeholder="Last Name" [(ngModel)]="details.lname"></app-input>
+    <app-input name="firstname" [(ngModel)]="details.fname" placeholder="First Name"  ngDefaultControl required ngModel></app-input>
+    <app-input name ="lastname"  [(ngModel)]="details.lname" placeholder="Last Name" ngDefaultControl required ngModel></app-input>
     <ion-button (click)="getRoomByName()" color="light" type="submit" shape="round" block>SEARCH</ion-button>
 
   </div>

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ChooseRoomPage implements OnInit {
   details: any={};
+  need:any={};
   responseData: any;
 
   constructor(private router: Router,private http: HTTP, private roomservice: RoomService) { }
@@ -23,7 +24,7 @@ export class ChooseRoomPage implements OnInit {
       console.log(data.data);
       this.responseData = JSON.parse(data.data);
     });
-
+    console.log(this.responseData);
     this.roomservice.setRoomNumber(this.responseData.Name);
     this.roomservice.setCapacity(this.responseData.Capacity);
     this.roomservice.setSpacesLeft(this.responseData.Capacity);
@@ -35,10 +36,30 @@ export class ChooseRoomPage implements OnInit {
 
 
   }
-  
+  async getbycapacity(){
+    await this.http.post('https://platinumhostel.000webhostapp.com/searchbycapacity.php',
+    {capacity:this.need.capacity},{}).then(data=>{
+      console.log(data.data);
+      this.responseData = data.data;
+    });
+    // console.log(this.responseData);
+    this.roomservice.setRoomNumber(this.responseData.Name);
+    this.roomservice.setCapacity(this.responseData.Capacity);
+    this.roomservice.setSpacesLeft(this.responseData.Capacity);
+    
+    // if(this.roomservice.setRoomNumber(this.responseData.Name)){
+    //   this.router.navigate(['/room-details']);
+    // }
 
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
+
+
   }
 
-}
+  }
+  
+
+  // segmentChanged(ev: any) {
+  //   console.log('Segment changed', ev);
+  // }
+
+

@@ -11,8 +11,6 @@ import {HTTP } from '@ionic-native/http/ngx';
 import { FormsModule } from '@angular/forms';
 import {Toast} from '@ionic-native/toast/ngx';
 import {TenantService} from './tenant.service';
-
-
 import {RoomService} from './room.service';
 
 
@@ -23,6 +21,6 @@ import {RoomService} from './room.service';
   providers: [Toast,HTTP, HttpClient, TenantService, RoomService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule implements OnInit {
+export class AppModule {
 constructor(){}
 }
