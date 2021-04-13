@@ -10,6 +10,7 @@ export class RoomDetailsPage implements OnInit {
   roomnumber: any;
   capacity: any;
   space_left: any;
+  cost:any;
 
   constructor(private roomservice: RoomService) { }
 
@@ -17,6 +18,7 @@ export class RoomDetailsPage implements OnInit {
     this.roomnumber = this.roomservice.getRoomNumber();
     this.capacity = this.roomservice.getCapacity();
     this.space_left = this.roomservice.getSpacesLeft();
+    this.cost = this.roomservice.getCost();
 
   }
 

@@ -12,6 +12,7 @@ export class ChooseRoomPage implements OnInit {
   details: any={};
   need:any={};
   responseData: any;
+  responseObject: any={};
 
   constructor(private router: Router,private http: HTTP, private roomservice: RoomService) { }
 
@@ -28,6 +29,7 @@ export class ChooseRoomPage implements OnInit {
     this.roomservice.setRoomNumber(this.responseData.Name);
     this.roomservice.setCapacity(this.responseData.Capacity);
     this.roomservice.setSpacesLeft(this.responseData.Capacity);
+    this.roomservice.setCost(this.responseData.cost);
     
     if(this.roomservice.setRoomNumber(this.responseData.Name)){
       this.router.navigate(['/room-details']);
@@ -40,26 +42,20 @@ export class ChooseRoomPage implements OnInit {
     await this.http.post('https://platinumhostel.000webhostapp.com/searchbycapacity.php',
     {capacity:this.need.capacity},{}).then(data=>{
       console.log(data.data);
-      this.responseData = data.data;
+      this.responseObject = data.data;
     });
-    // console.log(this.responseData);
-    this.roomservice.setRoomNumber(this.responseData.Name);
-    this.roomservice.setCapacity(this.responseData.Capacity);
-    this.roomservice.setSpacesLeft(this.responseData.Capacity);
+
+    this.roomservice.setObject(this.responseData);
+
+    if(this.roomservice.setObject(this.responseObject)){
+      this.router.navigate(['/all-room-details']);
+    } 
     
-    // if(this.roomservice.setRoomNumber(this.responseData.Name)){
-    //   this.router.navigate(['/room-details']);
-    // }
-
-
 
   }
 
   }
   
 
-  // segmentChanged(ev: any) {
-  //   console.log('Segment changed', ev);
-  // }
 
 

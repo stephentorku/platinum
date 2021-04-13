@@ -8,6 +8,8 @@ export class RoomService {
   capacity:any;
   roomnumber:any;
   spaces_left:any;
+  cost:any;
+  responseObject: any={};
   constructor() { }
   
 
@@ -55,5 +57,30 @@ export class RoomService {
   getSpacesLeft(){
     return this.spaces_left;
   }
+
+  //cost
+  setCost(sth){
+    if(sth!=''){
+      this.cost=sth;
+      return true;
+    }
+    else{
+      return false;
+    }
+   
+  }
+  getCost(){
+    return this.cost;
+  }
+
+  setObject(sth){
+    this.responseObject = sth;
+    return true;
+  }
+
+  getObject(){
+    return this.responseObject;
+  }
+
 
 }
