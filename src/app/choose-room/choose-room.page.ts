@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{HTTP } from '@ionic-native/http/ngx';
 import {RoomService} from '../room.service';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-choose-room',
