@@ -14,7 +14,7 @@
 <div class="items">
 <h3>Make Payment</h3>
 <form>
-	<h3>You are paying GHC {{cost}} to Platinum Hostel {{id}}</h3>
+	<h3>You are paying GHC {{cost}} to Platinum Hostel</h3>
     <app-input placeholder="Enter Email" name="email" [(ngModel)]="details.email" ngDefaultControl required ngModel></app-input>
 	<app-input placeholder="Enter Phone number (+233..)" name="phonenumber" [(ngModel)]="details.number" ngDefaultControl required ngModel></app-input>
     <ion-button color="light" type="submit" shape="round" block (click)="makepayment()">Make Payment</ion-button>

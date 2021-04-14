@@ -1,4 +1,5 @@
 <ion-header class="ion-no-border">
+
 	<ion-toolbar>
 		<!-- <ion-buttons slot="start">
 			<ion-button>
@@ -13,6 +14,7 @@
 	</ion-toolbar>
 
 	<ion-item lines="none" >
+   
 
 		<ion-avatar slot="start">
 			<img src="assets/user.png">
@@ -29,7 +31,6 @@
 </ion-header>
 
 <ion-content>
-
   <div class="slides ion-margin-bottom">
     <ion-slides [options]="slidesOptions">
       <ion-slide>
@@ -42,8 +43,8 @@
           </ion-card-header>
           <ion-card-content class="ion-text-left">
             <ion-card-title class="ion-margin-bottom">Room Details: </ion-card-title>
-            <ion-card-subtitle class="ion-text-left">Room Capacity: 3</ion-card-subtitle>
-            <ion-card-subtitle class="ion-text-left">Room Number: B34</ion-card-subtitle>
+            <ion-card-subtitle class="ion-text-left">Room Capacity: {{roomc}}</ion-card-subtitle>
+            <ion-card-subtitle class="ion-text-left">Room Number: {{roomn}}</ion-card-subtitle>
           </ion-card-content>
         </ion-card>
       </ion-slide>

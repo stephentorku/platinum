@@ -23,7 +23,7 @@
     <ion-card-subtitle class="ion-text-left">Room capacity: {{room.Capacity}} </ion-card-subtitle>
     <ion-card-subtitle class="ion-text-left">Spaces Left: {{room.Capacity}} </ion-card-subtitle>
     <ion-card-subtitle class="ion-text-left">Cost: {{room.cost}} </ion-card-subtitle>
-    <ion-button [routerLink]="['/make-payment', room.cost]">Make Payment</ion-button>
+    <ion-button [routerLink]="['/make-payment', room.cost,room.id]">Make Payment</ion-button>
   </ion-card-content>
 </ion-card>
 

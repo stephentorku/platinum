@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import{Router,NavigationExtras} from '@angular/router';
+import { TenantService } from '../tenant.service';
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,19 +15,21 @@ import { ActivatedRoute } from '@angular/router';
 export class MakePaymentPage implements OnInit {
   details: any={};
   cost;
-  id;
   url;
   orderid;
   responseD:any={};
+  id:any;
+  roomD:any;
 
 
-  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private route: ActivatedRoute) {
-
+  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private tenant:TenantService,private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.cost = this.route.snapshot.paramMap.get("cost");
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.route.params.subscribe(params =>{
+      this.cost=params['cost'];
+      this.roomD=params['id'];
+    })
 
   }
 
@@ -45,7 +49,9 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
           }
         }]
       }).then((confirmElement)=>{
@@ -59,15 +65,27 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
           }
         }]
       }).then((confirmElement)=>{
         confirmElement.present()
       })
+
+      this.assignroom();
     }
   }
   
-
+  async assignroom(){
+    this.id=this.tenant.getid();
+    await this.http.post('https://platinumhostel.000webhostapp.com/assign.php',{
+      user_id: this.id,room:this.roomD
+    },{}).then(data=>{
+      console.log(data.data);
+    });
+    
+  }
 
 }
