@@ -21,7 +21,7 @@ export class RoomDetailsPage implements OnInit {
     this.space_left = this.roomservice.getSpacesLeft();
     this.cost = this.roomservice.getCost();
     this.id = this.roomservice.getID();
-
+console.log(this.id);
   }
 
 }

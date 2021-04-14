@@ -3,12 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import{Router,NavigationExtras} from '@angular/router';
-<<<<<<< HEAD
 import { TenantService } from '../tenant.service';
 
-=======
 import { ActivatedRoute } from '@angular/router';
->>>>>>> 548837bb2318f5761a671601890b56dfadea49be
 
 @Component({
   selector: 'app-make-payment',
@@ -18,24 +15,21 @@ import { ActivatedRoute } from '@angular/router';
 export class MakePaymentPage implements OnInit {
   details: any={};
   cost;
-  id;
   url;
   orderid;
   responseD:any={};
   id:any;
+  roomD:any;
 
 
-<<<<<<< HEAD
-  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private tenant:TenantService) {
-=======
-  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private route: ActivatedRoute) {
->>>>>>> 548837bb2318f5761a671601890b56dfadea49be
-
+  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private tenant:TenantService,private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.cost = this.route.snapshot.paramMap.get("cost");
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.route.params.subscribe(params =>{
+      this.cost=params['cost'];
+      this.roomD=params['id'];
+    })
 
   }
 
@@ -55,7 +49,9 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
           }
         }]
       }).then((confirmElement)=>{
@@ -69,19 +65,23 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home']).then(() => {
+              window.location.reload();
+            });
           }
         }]
       }).then((confirmElement)=>{
         confirmElement.present()
       })
+
+      this.assignroom();
     }
   }
   
   async assignroom(){
     this.id=this.tenant.getid();
     await this.http.post('https://platinumhostel.000webhostapp.com/assign.php',{
-      user_id: this.id,room:
+      user_id: this.id,room:this.roomD
     },{}).then(data=>{
       console.log(data.data);
     });

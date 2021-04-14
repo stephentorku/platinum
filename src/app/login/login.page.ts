@@ -4,6 +4,7 @@ import {Toast} from '@ionic-native/toast/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TenantService } from '../tenant.service';
+import { CookieService} from 'ngx-cookie-service';
 
 
 
@@ -18,9 +19,10 @@ export class LoginPage implements OnInit {
   user:any={};
   responseData:any;
  
-  constructor(private router: Router, private http:HTTP, private toast: Toast , public navCtrl:NavController , private tenant:TenantService) { }
+  constructor(private router: Router, private http:HTTP, private toast: Toast , public navCtrl:NavController , private tenant:TenantService, private cookie:CookieService) { }
 
   ngOnInit() {
+    this.cookie.deleteAll();
   }
 
   async login(){
@@ -39,7 +41,8 @@ export class LoginPage implements OnInit {
 
   this.tenant.setroomid(this.responseData.room);
   this.tenant.setid(this.responseData.id);
-  this.tenant.setname(this.responseData.first_name);   
+  this.tenant.setname(this.responseData.first_name); 
+  this.cookie.set("userd",this.responseData.id)  
   if(this.tenant.setid(this.responseData.id)){
     this.router.navigate(['/home']);
   }
