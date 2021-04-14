@@ -5,6 +5,9 @@ import {AlertController, NavController} from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TenantService } from '../tenant.service';
 import { CookieService} from 'ngx-cookie-service';
+import { LoadingController } from '@ionic/angular';
+
+
 
 
 
@@ -19,36 +22,68 @@ export class LoginPage implements OnInit {
   user:any={};
   responseData:any;
  
-  constructor(private router: Router, private http:HTTP, private toast: Toast , public navCtrl:NavController , private tenant:TenantService, private cookie:CookieService) { }
+  constructor(private router: Router, private http:HTTP, 
+    private toast: Toast , public navCtrl:NavController , 
+    private tenant:TenantService, private cookie:CookieService, 
+    public loadingController: LoadingController, 
+    private alertctrl:AlertController) { }
 
   ngOnInit() {
     this.cookie.deleteAll();
   }
 
   async login(){
-    await this.http.post('https://platinumhostel.000webhostapp.com/logintenant.php',{
-      email:this.user.email,
-      pass:this.user.pass
-     },{}).then(data=>{
-      this.responseData=JSON.parse(data.data);
-      // console.log(data.data);
-     });
-  console.log(this.user.email);
-  console.log(this.user.pass);
-  console.log(this.responseData);
 
-  console.log(this.responseData.id);
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
 
-  this.tenant.setroomid(this.responseData.room);
-  this.tenant.setid(this.responseData.id);
-  this.tenant.setname(this.responseData.first_name); 
-  this.cookie.set("userd",this.responseData.id)  
-  if(this.tenant.setid(this.responseData.id)){
-    this.router.navigate(['/home']);
-  }
-  else{
-    this.router.navigate(['/login']);
-  }
+    loading.present().then(async ()=>{
+
+      await this.http.post('https://platinumhostel.000webhostapp.com/logintenant.php',{
+        email:this.user.email,
+        pass:this.user.pass
+       },{}).then(data=>{
+        this.responseData=JSON.parse(data.data);
+        // console.log(data.data);
+       });
+    console.log(this.user.email);
+    console.log(this.user.pass);
+    console.log(this.responseData);
+  
+    console.log(this.responseData.id);
+  
+    this.tenant.setroomid(this.responseData.room);
+    this.tenant.setid(this.responseData.id);
+    this.tenant.setname(this.responseData.first_name); 
+    this.cookie.set("userd",this.responseData.id);
+
+    loading.dismiss();
+
+    if(this.tenant.setid(this.responseData.id)){
+      this.router.navigate(['/home']);
+    }
+    else{
+      await this.alertctrl.create({
+        header:'Sorry!',
+        subHeader:'Wrong credentials',
+        buttons:[{
+          text:"Okay",
+          handler:()=>{
+            this.router.navigate(['/login']).then(() => {
+              window.location.reload();
+            });
+          }
+        }]
+      }).then((confirmElement)=>{
+        confirmElement.present()
+      })
+    
+
+    }
+
+    });
+    
 }
 }
 
