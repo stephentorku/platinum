@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import{HTTP } from '@ionic-native/http/ngx';
 import { TenantService } from '../tenant.service';
+import {RoomService} from '../room.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ export class HomePage {
  id:any;
  person:any=[];
  p:any=[];
+ 
 
-  constructor(private http:HTTP, private tenant:TenantService ) { }
+  constructor(private http:HTTP, private tenant:TenantService,private roomservice: RoomService ) { }
 
   ngOnInit() {
     this.p=this.tenant.getuser();
@@ -26,13 +28,25 @@ export class HomePage {
     // console.log(this.person);  
     console.log(this.person)
     
-    console.log(this.person.paymentstatus);
+
   }
 
   
   slidesOptions = {
     slidesPerView: 1.5
   }
+
+  // verifyroom(){
+  //   if(rr == ''){
+  //     this.roomservice.setRoomNumber('Not Assigned');
+  //     this.roomservice.setCapacity('Not Assigned');
+  //     this.roomN=this.roomservice.getRoomNumber();
+  //     this.roomC=this.roomservice.getCapacity();
+  //   }
+  //   else{
+
+  //   }
+  // }
 
 
 

@@ -37,10 +37,14 @@ export class LoginPage implements OnInit {
 
   console.log(this.responseData.id);
 
+  this.tenant.setroomid(this.responseData.room);
   this.tenant.setid(this.responseData.id);
   this.tenant.setname(this.responseData.first_name);   
   if(this.tenant.setid(this.responseData.id)){
     this.router.navigate(['/home']);
+  }
+  else{
+    this.router.navigate(['/login']);
   }
 }
 }

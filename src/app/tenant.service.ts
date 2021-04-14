@@ -6,7 +6,8 @@ import{HTTP } from '@ionic-native/http/ngx';
 export class TenantService {
 
   id:any;
-  name:any
+  name:any;
+  rid:any;
   constructor(private http: HTTP){ }
 
   getuserid(createbody,create){
@@ -38,5 +39,14 @@ export class TenantService {
 
   getuser(){
     return this.name;
+  }
+  setroomid(yak){
+    this.rid=yak
+    return true
+
+  }
+
+  getroomid(){
+    return this.rid;
   }
 }

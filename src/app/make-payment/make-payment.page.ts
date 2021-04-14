@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import{Router,NavigationExtras} from '@angular/router';
+import { TenantService } from '../tenant.service';
 
 
 @Component({
@@ -16,9 +17,10 @@ export class MakePaymentPage implements OnInit {
   url;
   orderid;
   responseD:any={};
+  id:any;
 
 
-  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router) {
+  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private tenant:TenantService) {
 
   }
 
@@ -65,6 +67,14 @@ export class MakePaymentPage implements OnInit {
     }
   }
   
-
+  async assignroom(){
+    this.id=this.tenant.getid();
+    await this.http.post('https://platinumhostel.000webhostapp.com/assign.php',{
+      user_id: this.id,room:
+    },{}).then(data=>{
+      console.log(data.data);
+    });
+    
+  }
 
 }
