@@ -36,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./choose-room/choose-room.module').then( m => m.ChooseRoomPageModule)
   },
   {
-    path: 'make-payment',
+    path: 'make-payment/:cost/:id',
     loadChildren: () => import('./make-payment/make-payment.module').then( m => m.MakePaymentPageModule)
   },
   {

@@ -30,6 +30,7 @@ export class ChooseRoomPage implements OnInit {
     this.roomservice.setCapacity(this.responseData.Capacity);
     this.roomservice.setSpacesLeft(this.responseData.Capacity);
     this.roomservice.setCost(this.responseData.cost);
+    this.roomservice.setID(this.responseData.id);
     
     if(this.roomservice.setRoomNumber(this.responseData.Name)){
       this.router.navigate(['/room-details']);

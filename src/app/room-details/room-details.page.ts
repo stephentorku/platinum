@@ -11,6 +11,7 @@ export class RoomDetailsPage implements OnInit {
   capacity: any;
   space_left: any;
   cost:any;
+  id:any;
 
   constructor(private roomservice: RoomService) { }
 
@@ -19,6 +20,7 @@ export class RoomDetailsPage implements OnInit {
     this.capacity = this.roomservice.getCapacity();
     this.space_left = this.roomservice.getSpacesLeft();
     this.cost = this.roomservice.getCost();
+    this.id = this.roomservice.getID();
 
   }
 
