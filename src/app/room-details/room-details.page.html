@@ -14,19 +14,14 @@
 <ion-content>
 <h3>Room Details</h3>
 <ion-card>
-  <ion-card-header>
-    <div class="main">
-      <img src="/assets/fast-food.png">
-    </div>
-    
+  <ion-card-header>  
   </ion-card-header>
   <ion-card-content class="ion-text-left">
     <ion-card-title class="ion-margin-bottom h3-color">Room Number: {{roomnumber}}  </ion-card-title>
     <ion-card-subtitle class="ion-text-left">Room capacity: {{capacity}} </ion-card-subtitle>
     <ion-card-subtitle class="ion-text-left">Spaces Left: {{space_left}} </ion-card-subtitle>
     <ion-card-subtitle class="ion-text-left">Cost: {{cost}} </ion-card-subtitle>
-    <paybox-button-widget merchant-key="85c6060a-ed58-45c2-9635-da7c221117ac" total="{{cost}}" 
-    currency="GHS"> Book Room</paybox-button-widget>
+    <ion-button [routerLink]="['/make-payment', cost,id]">Make Payment</ion-button>
   </ion-card-content>
 </ion-card>
 

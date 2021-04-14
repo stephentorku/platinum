@@ -5,12 +5,29 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RoomService {
+  id;
   capacity:any;
   roomnumber:any;
   spaces_left:any;
   cost:any;
   responseObject: any={};
   constructor() { }
+
+
+  //id
+  setID(sth){
+    if(sth!=''){
+      this.id=sth;
+      return true;
+    }
+    else{
+      return false;
+    }
+   
+  }
+  getID(){
+    return this.id;
+  }
   
 
   //room number

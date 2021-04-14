@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 import {AlertController, NavController} from '@ionic/angular';
 import{Router,NavigationExtras} from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-make-payment',
@@ -12,18 +12,21 @@ import{Router,NavigationExtras} from '@angular/router';
 })
 export class MakePaymentPage implements OnInit {
   details: any={};
-  cost=4000;
+  cost;
+  id;
   url;
   orderid;
   responseD:any={};
 
 
-  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router) {
+  constructor(private http:HTTP,private alertctrl:AlertController, public navCtrl:NavController,private router: Router,private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    
+    this.cost = this.route.snapshot.paramMap.get("cost");
+    this.id = this.route.snapshot.paramMap.get("id");
+
   }
 
  async makepayment(){
