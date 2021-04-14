@@ -34,7 +34,9 @@ export class SignupPage implements OnInit {
         number:this.user.number,
         pass:this.user.pass
   
-      },{});
+      },{}).then(data =>{
+        console.log(data.data);
+      });
       loading.dismiss();
 
       await this.alertctrl.create({

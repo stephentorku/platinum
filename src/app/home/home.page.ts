@@ -22,8 +22,8 @@ dets:any=[];
 
   async ngOnInit() {
     this.p=this.tenant.getuser();
-    // this.id = this.tenant.getid();
-    this.id =this.cookie.get("userd");
+    this.id = this.tenant.getid();
+    // this.id =this.cookie.get("userd");
     console.log(this.id);
    await this.http.post('https://platinumhostel.000webhostapp.com/tenantdetails.php',{
       id: this.id
@@ -44,7 +44,7 @@ dets:any=[];
   }
 
   async verifyroom(){
-    this.id=this.cookie.get("userd");
+    this.id=this.tenant.getid();
     await this.http.post('https://platinumhostel.000webhostapp.com/checkroom.php',{
       user_id: this.id
     },{}).then(data=>{

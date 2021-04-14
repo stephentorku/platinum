@@ -56,7 +56,6 @@ export class LoginPage implements OnInit {
     this.tenant.setroomid(this.responseData.room);
     this.tenant.setid(this.responseData.id);
     this.tenant.setname(this.responseData.first_name); 
-    this.cookie.set("userd",this.responseData.id);
 
     loading.dismiss();
 

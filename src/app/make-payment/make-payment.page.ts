@@ -49,9 +49,7 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']).then(() => {
-              window.location.reload();
-            });
+            this.router.navigate(['/make-payment']);
           }
         }]
       }).then((confirmElement)=>{
@@ -65,9 +63,7 @@ export class MakePaymentPage implements OnInit {
         buttons:[{
           text:"Okay",
           handler:()=>{
-            this.router.navigate(['/home']).then(() => {
-              window.location.reload();
-            });
+            this.router.navigate(['/home']);
           }
         }]
       }).then((confirmElement)=>{
